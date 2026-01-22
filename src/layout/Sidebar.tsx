@@ -1,13 +1,25 @@
-import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
-import { FaHouse } from "react-icons/fa6";
+import { FaHouse, FaGear, FaLayerGroup } from "react-icons/fa6";
+import Menu from "../components/Menu";
 
 const Sidebar = () => {
   const menuItems = [
     {
       path: "/dashboard",
       name: "Dashboard",
-      icon: <FaHouse size={20} color="white" className="mb-0.5" />,
+      icon: <FaHouse />,
+    },
+    {
+      path: "",
+      name: "Pengaturan",
+      icon: <FaGear />,
+      children: [
+        {
+          path: "/category",
+          name: "Kategori",
+          icon: <FaLayerGroup />,
+        },
+      ],
     },
   ];
 
@@ -17,27 +29,22 @@ const Sidebar = () => {
         <img
           src={logo}
           alt="Logo"
-          className=" MenuIcon py-2 lg:py-6 2xl:py-8"
+          className="w-5 lg:w-7 2xl:w-8 xl:w py-2 lg:py-6"
         />
         <h1 className="hidden md:block text-white font-bold text-xl lg:text-2xl 2xl:text-3xl tracking-wide">
           RetailMu
         </h1>
       </div>
 
-      <nav className="flex-1 py-2 space-y-2 md:w-full">
+      <nav className="flex-1 py-2 space-y-1 md:w-full">
         {menuItems.map((item) => (
-          <NavLink
+          <Menu
             key={item.path}
-            to={item.path}
-            className={({ isActive }: { isActive: boolean }) =>
-              `flex items-center rounded-md transition-all p-2  md:p-3 2xl:p-4 gap-2 ${isActive ? " bg-(--secondary-color)" : "hover:bg-(--secondary-color)"}`
-            }
-          >
-            <span className="shrink-0">{item.icon}</span>
-            <p className="hidden md:block text-white text-sm lg:text-base font-medium truncate">
-              {item.name}
-            </p>
-          </NavLink>
+            path={item.path}
+            icon={item.icon}
+            name={item.name}
+            children={item.children}
+          />
         ))}
       </nav>
     </aside>

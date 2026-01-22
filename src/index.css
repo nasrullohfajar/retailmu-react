@@ -17,13 +17,3 @@
   --primary-color: #4264d0;
   --secondary-color: #547dff;
 }
-
-.MenuIcon {
-  width: 20px;
-}
-
-@media only screen and (max-width: 400px) {
-  .MenuIcon {
-    size: 20px;
-  }
-}
