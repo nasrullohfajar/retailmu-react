@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import Dashboard from "./features/dashboard/components/Dashboard";
+import CategoryPage from "./features/master/category/pages/CategoryPage";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "category",
-        element: <Dashboard />,
+        element: <CategoryPage />,
       },
     ],
   },
