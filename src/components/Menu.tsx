@@ -11,7 +11,7 @@ const Menu = ({ path, icon, name, children }: IMenu) => {
       <div className="flex flex-col space-y-1">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center rounded-md transition-all p-2 md:p-3 2xl:p-4 gap-2"
+          className="flex items-center rounded-md transition-all p-2 md:p-3 2xl:p-4 gap-2 cursor-pointer"
         >
           <span className="shrink-0 text-white">{icon}</span>
           <p className="hidden md:block text-white text-xs lg:text-sm font-medium truncate">
