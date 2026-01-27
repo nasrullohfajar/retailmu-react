@@ -1,0 +1,121 @@
+import type { ICategoryInput } from "../types/category";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import { categoryService } from "../services/categoryService";
+
+export const useGetCategories = (
+  page: number,
+  search: string,
+  sortBy: string = "createdAt",
+  order: string = "desc",
+) => {
+  return useQuery({
+    queryKey: ["categories", page, search, sortBy, order],
+    queryFn: () => categoryService.getAll({ page, search, sortBy, order }),
+    staleTime: 5 * 60 * 1000, // Data dianggap fresh selama 5 menit
+  });
+};
+
+export const useGetCategoryById = (id: string) => {
+  return useQuery({
+    queryKey: ["categories", id],
+    queryFn: () => categoryService.getById(id),
+    enabled: !!id, //Query hanya berjalan jika ID tersedia
+  });
+};
+
+export const useCreateCategory = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: categoryService.create,
+
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ["categories"] }); // refresh query
+
+      Swal.fire({
+        icon: "success",
+        text: response.message,
+        timer: 2000,
+        showConfirmButton: false,
+        toast: true,
+        position: "top-right",
+      });
+    },
+
+    onError: (error: string) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error,
+      });
+    },
+  });
+};
+
+export const useUpdateCategory = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({
+      id,
+      payload,
+    }: {
+      id: string;
+      payload: Partial<ICategoryInput>;
+    }) => categoryService.update(id, payload),
+
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ["categories"] });
+      queryClient.invalidateQueries({
+        queryKey: ["categories", response.categories._id],
+      });
+
+      Swal.fire({
+        icon: "success",
+        text: response.message,
+        timer: 2000,
+        showConfirmButton: false,
+        toast: true,
+        position: "top-right",
+      });
+    },
+
+    onError: (error: string) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error,
+      });
+    },
+  });
+};
+
+export const useDeleteCategory = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => categoryService.delete(id),
+
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ["categories"] });
+
+      Swal.fire({
+        icon: "success",
+        text: response.message,
+        timer: 2000,
+        showConfirmButton: false,
+        toast: true,
+        position: "top-right",
+      });
+    },
+
+    onError: (error: string) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error,
+      });
+    },
+  });
+};
