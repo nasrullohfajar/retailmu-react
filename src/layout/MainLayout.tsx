@@ -4,10 +4,10 @@ import Header from "./Header";
 
 const MainLayout = () => {
   return (
-    <div className="flex h-dvh p-2 gap-2 2xl:gap-4">
+    <div className="flex h-dvh">
       <Sidebar />
 
-      <div className="flex flex-col flex-1 overflow-hidden gap-2 2xl:gap-4">
+      <div className="flex flex-col flex-1 overflow-hidden gap-2 2xl:gap-4 p-2 2xl:p-8">
         <Header />
 
         <main className="flex-1 overflow-y-auto py-4 px-3 bg-white rounded-sm shadow-xs ">
