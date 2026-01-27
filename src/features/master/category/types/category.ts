@@ -1,0 +1,28 @@
+import type { IPagination } from "../../../../types/pagination";
+
+export interface ICategory {
+  _id: string;
+  name: string;
+  description: string;
+  [key: string]: unknown;
+}
+
+export interface ICategoryInput {
+  name: string;
+  description?: string;
+}
+
+export interface ICategoryResponse {
+  success: boolean;
+  message: string;
+}
+
+export interface ICategoryResponseAll extends ICategoryResponse {
+  categories: ICategory[];
+  total: number;
+  pagination: IPagination;
+}
+
+export interface ICategoryResponseDetail extends ICategoryResponse {
+  categories: ICategory;
+}
