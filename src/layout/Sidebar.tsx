@@ -24,8 +24,8 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="flex flex-col items-center w-14 md:w-48 lg:w-64 py-2 md:px-2 bg-(--primary-color) rounded-sm">
-      <div className="flex gap-2 2xl:gap-4 items-center md:px-2 mb-2">
+    <aside className="flex flex-col items-center w-14 md:w-48 lg:w-68 p-4 bg-(--primary-color) text-white gap-4">
+      <div className="flex gap-2 2xl:gap-4 items-center md:px-2">
         <img
           src={logo}
           alt="Logo"
