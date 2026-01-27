@@ -1,0 +1,51 @@
+export interface Column<T> {
+  title: string;
+  data: keyof T | string;
+  className?: string;
+  sort?: boolean;
+}
+
+export interface TableBodyProps<T> {
+  data: T[];
+  page: number;
+  limit: number;
+  columns: Column<T>[];
+  onEdit?: (id: string) => void;
+  onDetail?: (id: string) => void;
+  onDelete?: (id: string) => void;
+}
+
+export interface TableHeadProps<T> {
+  columns: Column<T>[];
+  sortBy?: string;
+  order?: "asc" | "desc";
+  onSort?: (column: string) => void;
+  hasActions?: boolean;
+}
+
+export interface TablePaginationProps {
+  page: number;
+  setPage: (page: number) => void;
+  totalPages: number;
+}
+
+export interface TableProps<T> {
+  data: T[] | undefined;
+  isLoading: boolean;
+  total: number;
+  totalPages: number;
+  page: number;
+  setPage: (page: number) => void;
+  limit: number;
+  columns: Column<T>[];
+  sortBy?: string;
+  order?: "asc" | "desc";
+  onSort?: (column: string) => void;
+  onAdd?: () => void;
+  onEdit?: (id: string) => void;
+  onDetail?: (id: string) => void;
+  onDelete?: (id: string) => void;
+  filters?: React.ReactNode;
+  customHeaderButton?: React.ReactNode;
+  
+}
