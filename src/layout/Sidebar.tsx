@@ -1,8 +1,12 @@
-import logo from "../assets/logo.svg";
-import { FaHouse, FaGear, FaLayerGroup } from "react-icons/fa6";
+import logo from "../assets/logo-full.svg";
+import logoInitial from "../assets/logo-initial.svg";
+import { FaHouse, FaGear } from "react-icons/fa6";
 import Menu from "../components/Menu";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const Sidebar = () => {
+  const isMobile = useIsMobile(767);
+
   const menuItems = [
     {
       path: "/dashboard",
@@ -17,26 +21,22 @@ const Sidebar = () => {
         {
           path: "/category",
           name: "Kategori",
-          icon: <FaLayerGroup />,
         },
       ],
     },
   ];
 
   return (
-    <aside className="flex flex-col items-center w-14 md:w-48 lg:w-68 p-4 bg-(--primary-color) text-white gap-4">
-      <div className="flex gap-2 2xl:gap-4 items-center md:px-2">
+    <aside className="flex flex-col items-center w-14 md:w-48 lg:w-62 xl:w-68 p-4 bg-(--primary-color) text-white gap-2 2xl:gap-6">
+      <div className="flex items-center">
         <img
-          src={logo}
+          src={isMobile ? logoInitial : logo}
           alt="Logo"
-          className="w-5 lg:w-7 2xl:w-8 xl:w py-2 lg:py-6"
+          className="w-20 lg:w-34 xl:w-38 mb-4"
         />
-        <h1 className="hidden md:block text-white font-bold text-xl lg:text-2xl 2xl:text-3xl tracking-wide">
-          RetailMu
-        </h1>
       </div>
 
-      <nav className="flex-1 py-2 space-y-1 md:w-full">
+      <nav className="flex-1 space-y-1 md:w-full">
         {menuItems.map((item) => (
           <Menu
             key={item.path}
