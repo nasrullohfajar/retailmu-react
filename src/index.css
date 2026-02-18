@@ -14,8 +14,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: #4264d0;
-  --secondary-color: #547dff;
+  --primary-color: #212d3b;
+  --secondary-color: #1f2531;
+  --accent-color: #7abfff;
 }
 
 ::-webkit-scrollbar {
