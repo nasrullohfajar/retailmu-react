@@ -7,10 +7,10 @@ const MainLayout = () => {
     <div className="flex h-dvh">
       <Sidebar />
 
-      <div className="flex flex-col flex-1 overflow-hidden gap-2 2xl:gap-4 p-2 2xl:p-8">
+      <div className="flex flex-col flex-1 overflow-hidden">
         <Header />
 
-        <main className="flex-1 overflow-y-auto py-4 px-3 bg-white rounded-sm shadow-xs ">
+        <main className="flex-1 overflow-y-auto py-4 px-3 bg-white rounded-sm shadow-xs gap-2 2xl:gap-4 m-2 2xl:m-6">
           <Outlet />
         </main>
       </div>
