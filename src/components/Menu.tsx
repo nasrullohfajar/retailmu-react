@@ -30,7 +30,6 @@ const Menu = ({ path, icon, name, children }: IMenu) => {
               path={child.path}
               name={child.name}
               icon={child.icon}
-              className="md:ml-3 2xl:ml-4"
             />
           ))}
       </div>

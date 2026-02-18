@@ -1,6 +1,6 @@
 export interface IMenu {
   path: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   name: string;
   children?: IMenu[];
   className?: string;
