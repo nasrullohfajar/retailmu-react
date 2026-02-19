@@ -29,11 +29,21 @@ export interface TablePaginationProps {
   totalPages: number;
 }
 
-export interface TableProps<T> {
-  data: T[] | undefined;
-  isLoading: boolean;
+export interface TableDataProps<T> {
+  data: T[];
+  pagination: {
+    currentPage: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+    limit: number;
+    totalPages: number;
+  };
   total: number;
-  totalPages: number;
+}
+
+export interface TableProps<T> {
+  data?: TableDataProps<T>;
+  isLoading: boolean;
   page: number;
   setPage: (page: number) => void;
   limit: number;
@@ -47,5 +57,4 @@ export interface TableProps<T> {
   onDelete?: (id: string) => void;
   filters?: React.ReactNode;
   customHeaderButton?: React.ReactNode;
-  
 }

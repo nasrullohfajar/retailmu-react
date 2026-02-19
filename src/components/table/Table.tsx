@@ -7,8 +7,6 @@ import TablePagination from "./TablePagination";
 const Table = <T extends Record<string, unknown>>({
   data,
   isLoading,
-  total,
-  totalPages,
   page,
   setPage,
   limit,
@@ -66,7 +64,7 @@ const Table = <T extends Record<string, unknown>>({
                 </td>
               </tr>
             </tbody>
-          ) : !data || data.length === 0 ? (
+          ) : !data || data?.data.length === 0 ? (
             <tbody>
               <tr>
                 <td
@@ -82,7 +80,7 @@ const Table = <T extends Record<string, unknown>>({
             </tbody>
           ) : (
             <TableBody
-              data={data}
+              data={data.data}
               page={page}
               limit={limit}
               columns={columns}
@@ -95,18 +93,14 @@ const Table = <T extends Record<string, unknown>>({
       </div>
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-2">
-        <div className="text-sm text-gray-500">
-          Menampilkan
-          <span className="font-semibold text-gray-700">
-            {data?.length || 0}
-          </span>
-          dari <span className="font-semibold text-gray-700">{total}</span> data
-        </div>
+        <p className="font-semibold text-gray-700">
+          Menampilkan {data?.data.length || 0} dari {data?.total || 0} data
+        </p>
 
         <TablePagination
           page={page}
           setPage={setPage}
-          totalPages={totalPages}
+          totalPages={data?.pagination?.totalPages || 0}
         />
       </div>
     </div>

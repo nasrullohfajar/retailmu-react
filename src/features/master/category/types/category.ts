@@ -18,11 +18,11 @@ export interface ICategoryResponse {
 }
 
 export interface ICategoryResponseAll extends ICategoryResponse {
-  categories: ICategory[];
+  data: ICategory[];
   total: number;
   pagination: IPagination;
 }
 
 export interface ICategoryResponseDetail extends ICategoryResponse {
-  categories: ICategory;
+  data: ICategory;
 }
