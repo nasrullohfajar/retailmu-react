@@ -22,18 +22,26 @@ const TableBody = <T extends Record<string, unknown>>({
             key={itemId || idx}
             className={`border-b border-gray-100 ${idx % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
           >
-            <td className="text-center py-4">{idx + 1 + (page - 1) * limit}</td>
+            <td className="text-center py-4 px-3">
+              {idx + 1 + (page - 1) * limit}
+            </td>
 
-            {columns.map((col) => (
-              <td
-                key={String(col.data)}
-                className={`py-3 px-2 truncate capitalize ${col.className || ""}`}
-              >
-                {String(
-                  (item as Record<string, unknown>)[col.data as string] ?? "-",
-                )}
-              </td>
-            ))}
+            {columns.map((col) => {
+              const value = (item as Record<string, unknown>)[
+                col.data as string
+              ];
+
+              return (
+                <td
+                  key={String(col.data)}
+                  className={`py-4 px-3 truncate capitalize ${col.className}`}
+                >
+                  {value !== undefined && value !== null && value !== ""
+                    ? String(value)
+                    : "-"}
+                </td>
+              );
+            })}
 
             {(onEdit || onDetail || onDelete) && (
               <td className="p-3">
