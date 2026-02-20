@@ -1,5 +1,5 @@
 import type { TableHeadProps } from "./types";
-import { HiChevronUp, HiChevronDown, HiSelector } from "react-icons/hi";
+import { SortIcon, SortUpIcon, SortDownIcon } from "../../assets/icons/sort";
 
 const TableHead = <T extends Record<string, unknown>>({
   columns,
@@ -21,7 +21,7 @@ const TableHead = <T extends Record<string, unknown>>({
             <th
               key={String(col.data)}
               className={`py-4 px-3 font-medium select-none transition-colors ${
-                isSortable ? "cursor-pointer hover:text-blue-600" : ""
+                isSortable ? "cursor-pointer hover:text-(--accent-color)" : ""
               } ${col.className || ""}`}
               onClick={
                 isSortable && onSort
@@ -37,11 +37,11 @@ const TableHead = <T extends Record<string, unknown>>({
                 {isSortable && (
                   <span className="text-lg">
                     {!isCurrentSort ? (
-                      <HiSelector className="text-gray-300" />
+                      <SortIcon className="w-6 h-6" />
                     ) : order === "asc" ? (
-                      <HiChevronUp className="text-blue-600" />
+                      <SortUpIcon className="w-6 h-6" />
                     ) : (
-                      <HiChevronDown className="text-blue-600" />
+                      <SortDownIcon className="w-6 h-6" />
                     )}
                   </span>
                 )}
@@ -51,7 +51,7 @@ const TableHead = <T extends Record<string, unknown>>({
         })}
 
         {hasActions && (
-          <th className="py-4 px-3 text-center font-medium">Aksi</th>
+          <th className="py-4 px-3 text-center font-medium w-42">Aksi</th>
         )}
       </tr>
     </thead>
