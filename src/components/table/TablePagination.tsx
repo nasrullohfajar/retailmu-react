@@ -34,7 +34,7 @@ const TablePagination = ({
         <BiChevronLeft size={24} />
       </button>
 
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
         {pages.map((p, i) =>
           p === "..." ? (
             <span key={`ellipsis-${i}`} className="px-3 py-1 text-gray-400">
@@ -45,9 +45,9 @@ const TablePagination = ({
               key={`page-${p}`}
               type="button"
               onClick={() => setPage(Number(p))}
-              className={`min-w-9 h-9 px-3 py-1 rounded-md text-sm font-medium transition-all ${
+              className={`min-w-8 h-8 px-3 py-1 rounded-md text-xs lg:text-sm font-medium transition-all ${
                 p === page
-                  ? "bg-blue-600 text-white shadow-sm shadow-blue-200"
+                  ? "bg-(--primary-color) text-white shadow-sm shadow-blue-200"
                   : "text-gray-600 hover:bg-gray-100"
               }`}
             >
