@@ -3,6 +3,7 @@ import { FaPlus } from "react-icons/fa6";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TablePagination from "./TablePagination";
+import TableSkeleton from "./TableSkeleton";
 
 const Table = <T extends Record<string, unknown>>({
   data,
@@ -21,6 +22,9 @@ const Table = <T extends Record<string, unknown>>({
   filters,
   customHeaderButton,
 }: TableProps<T>) => {
+  const hasActions = !!(onEdit || onDetail || onDelete);
+  const totalColumns = columns.length + 1 + (hasActions ? 1 : 0);
+
   return (
     <div className="flex flex-col gap-y-4 bg-white">
       <div className="flex flex-col md:flex-row justify-between gap-4">
@@ -42,7 +46,7 @@ const Table = <T extends Record<string, unknown>>({
       </div>
 
       <div className="overflow-x-auto ">
-        <table className="w-full text-sm text-left border-collapse">
+        <table className="w-full text-sm text-left border-collapse table-fixed">
           <TableHead
             columns={columns}
             sortBy={sortBy}
@@ -52,18 +56,7 @@ const Table = <T extends Record<string, unknown>>({
           />
 
           {isLoading ? (
-            <tbody>
-              <tr>
-                <td colSpan={columns.length + 2} className="py-20 text-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                    <span className="text-gray-500 font-medium">
-                      Memuat data...
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            <TableSkeleton columnCount={totalColumns} rowCount={10} />
           ) : !data || data?.data.length === 0 ? (
             <tbody>
               <tr>
@@ -72,8 +65,9 @@ const Table = <T extends Record<string, unknown>>({
                   className="py-20 text-center text-gray-400"
                 >
                   <div className="flex flex-col items-center gap-1">
-                    <span className="text-4xl">empty</span>
-                    <p className="font-medium">Data tidak ditemukan</p>
+                    <p className="font-medium text-xs lg:text-sm">
+                      Data tidak ditemukan
+                    </p>
                   </div>
                 </td>
               </tr>
@@ -92,8 +86,8 @@ const Table = <T extends Record<string, unknown>>({
         </table>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-2">
-        <p className="font-semibold text-gray-700">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-gray-500 text-xs lg:text-sm">
           Menampilkan {data?.data.length || 0} dari {data?.total || 0} data
         </p>
 
