@@ -11,8 +11,14 @@ export const useGetCategories = (
 ) => {
   return useQuery({
     queryKey: ["categories", page, search, sortBy, order],
-    queryFn: () => categoryService.getAll({ page, search, sortBy, order }),
-    staleTime: 5 * 60 * 1000, // Data dianggap fresh selama 5 menit
+    queryFn: async () => {
+      const [data] = await Promise.all([
+        categoryService.getAll({ page, search, sortBy, order }),
+        new Promise((resolve) => setTimeout(resolve, 600)),
+      ]);
+      return data;
+    },
+    staleTime: 5 * 60 * 1000,
   });
 };
 
@@ -68,7 +74,7 @@ export const useUpdateCategory = () => {
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });
       queryClient.invalidateQueries({
-        queryKey: ["categories", response.categories._id],
+        queryKey: ["categories", response.data._id],
       });
 
       Swal.fire({
