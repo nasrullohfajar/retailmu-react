@@ -34,10 +34,13 @@ export const useCreateCategory = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: categoryService.create,
+    mutationFn: (payload: ICategoryInput) => categoryService.create(payload),
 
     onSuccess: (response) => {
-      queryClient.invalidateQueries({ queryKey: ["categories"] }); // refresh query
+      queryClient.invalidateQueries({
+        queryKey: ["categories"],
+        exact: false,
+      }); // refresh query
 
       Swal.fire({
         icon: "success",
@@ -46,6 +49,11 @@ export const useCreateCategory = () => {
         showConfirmButton: false,
         toast: true,
         position: "top-right",
+        width: "auto",
+        customClass: {
+          htmlContainer: "text-xs lg:text-sm whitespace-nowrap px-4",
+          popup: "flex items-center",
+        },
       });
     },
 
