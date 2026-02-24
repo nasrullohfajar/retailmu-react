@@ -6,3 +6,13 @@ export interface ButtonActionProps {
   tooltipContent?: string;
   disabled?: boolean;
 }
+
+export interface ButtonProps {
+  name?: string;
+  handleClick?: React.MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+  icon?: React.ReactNode;
+  type?: "button" | "submit" | "reset" | undefined;
+  isLoading?: boolean;
+  disabled?: boolean;
+}
