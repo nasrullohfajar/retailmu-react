@@ -23,7 +23,7 @@ const TablePagination = ({
   }, [page, totalPages]);
 
   return (
-    <div className="flex items-center gap-1 text-sm select-none">
+    <div className="flex items-center gap-1 text-sm select-none min-w-42 justify-center">
       <button
         type="button"
         disabled={page === 1}
