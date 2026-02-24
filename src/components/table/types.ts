@@ -42,6 +42,8 @@ export interface TableDataProps<T> {
 }
 
 export interface TableProps<T> {
+  isOpen?: boolean;
+  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   data?: TableDataProps<T>;
   isLoading: boolean;
   page: number;
@@ -57,4 +59,5 @@ export interface TableProps<T> {
   onDelete?: (id: string) => void;
   filters?: React.ReactNode;
   customHeaderButton?: React.ReactNode;
+  modal?: React.ReactNode;
 }

@@ -4,8 +4,11 @@ import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TablePagination from "./TablePagination";
 import TableSkeleton from "./TableSkeleton";
+import Modal from "../modal/Modal";
 
 const Table = <T extends Record<string, unknown>>({
+  isOpen,
+  setIsOpen,
   data,
   isLoading,
   page,
@@ -21,6 +24,7 @@ const Table = <T extends Record<string, unknown>>({
   onDelete,
   filters,
   customHeaderButton,
+  modal,
 }: TableProps<T>) => {
   const hasActions = !!(onEdit || onDetail || onDelete);
   const totalColumns = columns.length + 1 + (hasActions ? 1 : 0);
@@ -36,7 +40,7 @@ const Table = <T extends Record<string, unknown>>({
           {onAdd && (
             <button
               onClick={onAdd}
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-sm active:scale-95"
+              className="flex items-center gap-2 bg-(--primary-color) hover:bg-(--secondary-color) hover:cursor-pointer text-white px-6 py-2.5 xl:py-3 rounded text-xs lg:text-sm transition-all"
             >
               <FaPlus />
               <span>Tambah</span>
@@ -85,6 +89,12 @@ const Table = <T extends Record<string, unknown>>({
           )}
         </table>
       </div>
+
+      {isOpen && setIsOpen && (
+        <Modal title={"Tambah"} setIsOpen={setIsOpen}>
+          {modal}
+        </Modal>
+      )}
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-gray-500 text-xs lg:text-sm">
