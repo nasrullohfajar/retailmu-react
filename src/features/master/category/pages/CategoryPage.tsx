@@ -1,12 +1,16 @@
+import type { ICategory } from "../types/category";
+import { useState } from "react";
 import Table from "../../../../components/table/Table";
 import { useGetCategories, useDeleteCategory } from "../hooks/useCategory";
-import type { ICategory } from "../types/category";
 import InputSearch from "../../../../components/input/InputSearch";
 import { useTableParams } from "../../../../hooks/useTableParams";
 import { confirmDeleteAlert } from "../../../../utils/sweetalert";
+import CategoryForm from "../components/CategoryForm";
 
 const CategoryPage = () => {
-  const table = useTableParams("createdBy");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const table = useTableParams("createdAt");
 
   const { data, isLoading } = useGetCategories(
     table.page,
@@ -21,6 +25,10 @@ const CategoryPage = () => {
     { title: "Nama Kategori", data: "name", sort: true },
     { title: "Deskripsi", data: "description", sort: false },
   ];
+
+  const handleAdd = () => {
+    setIsOpen(true);
+  };
 
   return (
     <Table<ICategory>
@@ -40,6 +48,10 @@ const CategoryPage = () => {
           setSearchInput={table.setSearchInput}
         />
       }
+      onAdd={handleAdd}
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      modal={<CategoryForm setIsOpen={setIsOpen} />}
     />
   );
 };
