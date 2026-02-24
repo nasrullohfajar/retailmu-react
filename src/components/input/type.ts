@@ -4,3 +4,23 @@ export interface InputSearchProps {
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface InputTextProps {
+  type?: string;
+  name: string;
+  label?: string;
+  placeholder?: string;
+  value: string | number | string[];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  icon?: React.ReactNode;
+  secret?: boolean;
+  required?: boolean;
+  className?: string;
+  formClassname?: string;
+  labelClassName?: string;
+  error?: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  decimal?: boolean;
+  errorNoLabel?: boolean;
+}
