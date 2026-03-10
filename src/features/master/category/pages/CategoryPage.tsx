@@ -1,7 +1,11 @@
 import type { ICategory } from "../types/category";
 import { useState } from "react";
 import Table from "../../../../components/table/Table";
-import { useGetCategories, useDeleteCategory } from "../hooks/useCategory";
+import {
+  useGetCategories,
+  useDeleteCategory,
+  useGetCategoryById,
+} from "../hooks/useCategory";
 import InputSearch from "../../../../components/input/InputSearch";
 import { useTableParams } from "../../../../hooks/useTableParams";
 import { confirmDeleteAlert } from "../../../../utils/sweetalert";
@@ -9,6 +13,7 @@ import CategoryForm from "../components/CategoryForm";
 
 const CategoryPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [id, setId] = useState<string | null>(null);
 
   const table = useTableParams("createdAt");
 
@@ -20,6 +25,9 @@ const CategoryPage = () => {
   );
 
   const { mutate: deleteCategory } = useDeleteCategory();
+  const { data: detailData, isLoading: isLoadingDetail } = useGetCategoryById(
+    id || "",
+  );
 
   const columns = [
     { title: "Nama Kategori", data: "name", sort: true },
@@ -30,6 +38,11 @@ const CategoryPage = () => {
     setIsOpen(true);
   };
 
+  const handleEdit = (id: string) => {
+    setId(id);
+    setIsOpen(true);
+  };
+
   return (
     <Table<ICategory>
       data={data}
@@ -37,9 +50,6 @@ const CategoryPage = () => {
       columns={columns}
       {...table}
       limit={10}
-      onDelete={(id) =>
-        confirmDeleteAlert("Kategori", () => deleteCategory(id))
-      }
       filters={
         <InputSearch
           setPage={table.setPage}
@@ -49,9 +59,29 @@ const CategoryPage = () => {
         />
       }
       onAdd={handleAdd}
+      onEdit={handleEdit}
+      onDelete={(id) =>
+        confirmDeleteAlert("Kategori", () => deleteCategory(id))
+      }
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      modal={<CategoryForm setIsOpen={setIsOpen} />}
+      modal={
+        isOpen && (
+          <>
+            {id && isLoadingDetail ? (
+              <div>Loading...</div>
+            ) : (
+              <CategoryForm
+                key={id ?? "new"}
+                setIsOpen={setIsOpen}
+                id={id}
+                initialData={detailData?.data}
+                isLoadingDetail={isLoadingDetail}
+              />
+            )}
+          </>
+        )
+      }
     />
   );
 };

@@ -1,15 +1,28 @@
 import { useState } from "react";
-import { useCreateCategory } from "../hooks/useCategory";
+import { useCreateCategory, useUpdateCategory } from "../hooks/useCategory";
 import { InputText } from "../../../../components/input";
 import ModalForm from "../../../../components/modal/ModalForm";
 
 interface CategoryFormProps {
   setIsOpen: (open: boolean) => void;
+  id?: string | null;
+  initialData?: { name: string; description: string };
+  isLoadingDetail?: boolean;
 }
 
-const CategoryForm = ({ setIsOpen }: CategoryFormProps) => {
-  const [formData, setFormData] = useState({ name: "", description: "" });
-  const { mutate: createCategory, isPending } = useCreateCategory();
+const CategoryForm = ({
+  setIsOpen,
+  id,
+  initialData,
+  isLoadingDetail,
+}: CategoryFormProps) => {
+  const [formData, setFormData] = useState({
+    name: initialData?.name || "",
+    description: initialData?.description || "",
+  });
+
+  const { mutate: createCategory, isPending: isCreating } = useCreateCategory();
+  const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,16 +32,23 @@ const CategoryForm = ({ setIsOpen }: CategoryFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    createCategory(formData, {
-      onSuccess: () => {
-        setIsOpen(false);
-      },
-    });
+    if (id) {
+      updateCategory(
+        { id: id, payload: formData },
+        { onSuccess: () => setIsOpen(false) },
+      );
+    } else {
+      createCategory(formData, {
+        onSuccess: () => setIsOpen(false),
+      });
+    }
   };
+
+  console.log("data", initialData);
 
   return (
     <ModalForm
-      isLoading={isPending}
+      isLoading={isCreating || isUpdating || isLoadingDetail}
       onSubmit={handleSubmit}
       setIsOpen={setIsOpen}
     >
@@ -39,7 +59,6 @@ const CategoryForm = ({ setIsOpen }: CategoryFormProps) => {
         onChange={handleChange}
         placeholder="Masukkan nama kategori"
       />
-
       <InputText
         label="Deskripsi"
         name="description"

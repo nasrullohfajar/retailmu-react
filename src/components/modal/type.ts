@@ -8,7 +8,7 @@ export interface ModalFormProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   children: React.ReactNode;
   setIsOpen: (open: boolean) => void;
-  isLoading: boolean;
+  isLoading?: boolean;
   className?: string;
   handleCloseModal?: () => void;
 }
