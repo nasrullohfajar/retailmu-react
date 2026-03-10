@@ -6,7 +6,7 @@ import ModalForm from "../../../../components/modal/ModalForm";
 interface CategoryFormProps {
   setIsOpen: (open: boolean) => void;
   id?: string | null;
-  initialData?: { name: string; description: string };
+  initialData?: { code: string; name: string; description: string };
   isLoadingDetail?: boolean;
 }
 
@@ -17,6 +17,7 @@ const CategoryForm = ({
   isLoadingDetail,
 }: CategoryFormProps) => {
   const [formData, setFormData] = useState({
+    code: initialData?.code || "",
     name: initialData?.name || "",
     description: initialData?.description || "",
   });
@@ -44,8 +45,6 @@ const CategoryForm = ({
     }
   };
 
-  console.log("data", initialData);
-
   return (
     <ModalForm
       isLoading={isCreating || isUpdating || isLoadingDetail}
@@ -53,12 +52,22 @@ const CategoryForm = ({
       setIsOpen={setIsOpen}
     >
       <InputText
+        label="Kode Kategori"
+        name="code"
+        value={formData.code}
+        onChange={handleChange}
+        placeholder="Masukkan kode kategori"
+        disabled={!!id}
+      />
+
+      <InputText
         label="Nama Kategori"
         name="name"
         value={formData.name}
         onChange={handleChange}
         placeholder="Masukkan nama kategori"
       />
+
       <InputText
         label="Deskripsi"
         name="description"

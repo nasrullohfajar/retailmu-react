@@ -2,12 +2,14 @@ import type { IPagination } from "../../../../types/pagination";
 
 export interface ICategory {
   _id: string;
+  code: string;
   name: string;
   description: string;
   [key: string]: unknown;
 }
 
 export interface ICategoryInput {
+  code: string;
   name: string;
   description?: string;
 }

@@ -30,6 +30,7 @@ const CategoryPage = () => {
   );
 
   const columns = [
+    { title: "Kode Kategori", data: "code", sort: true },
     { title: "Nama Kategori", data: "name", sort: true },
     { title: "Deskripsi", data: "description", sort: false },
   ];
