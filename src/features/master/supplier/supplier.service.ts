@@ -2,8 +2,8 @@ import type {
   ISupplierInput,
   ISupplierResponseAll,
   ISupplierResponseDetail,
-} from "../types/supplier";
-import axiosInstance from "../../../../api/axiosInstance";
+} from "./types";
+import axiosInstance from "../../../api/axiosInstance";
 
 export const supplierService = {
   create: async (payload: ISupplierInput): Promise<ISupplierResponseDetail> => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCreateCategory, useUpdateCategory } from "../hooks/useCategory";
+import { useCreateCategory, useUpdateCategory } from "../category.hook";
 import { InputText } from "../../../../components/input";
 import ModalForm from "../../../../components/modal/ModalForm";
 

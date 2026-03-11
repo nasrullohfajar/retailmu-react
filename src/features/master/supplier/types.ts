@@ -1,4 +1,4 @@
-import type { IPagination } from "../../../../types/pagination";
+import type { IPagination } from "../../../types/pagination";
 
 export interface ISupplier {
   _id: string;

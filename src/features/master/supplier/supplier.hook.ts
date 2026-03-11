@@ -1,7 +1,7 @@
-import type { ISupplierInput } from "../types/supplier";
+import type { ISupplierInput } from "./types";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { supplierService } from "../services/supplierService";
+import { supplierService } from "./supplier.service";
 
 export const useGetSuppliers = (
   page: number,

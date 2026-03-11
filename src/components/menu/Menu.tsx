@@ -1,6 +1,6 @@
+import type { IMenu } from "./types";
 import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
-import type { IMenu } from "../types/Menu";
 import { MenuItem } from "./MenuItem";
 
 const Menu = ({ path, icon, name, children }: IMenu) => {

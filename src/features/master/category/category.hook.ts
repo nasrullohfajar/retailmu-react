@@ -1,7 +1,7 @@
-import type { ICategoryInput } from "../types/category";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import type { ICategoryInput } from "./types";
 import Swal from "sweetalert2";
-import { categoryService } from "../services/categoryService";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { categoryService } from "./category.service";
 
 export const useGetCategories = (
   page: number,

@@ -1,7 +1,7 @@
 import logo from "../assets/logo-full.svg";
 import logoInitial from "../assets/logo-initial.svg";
 import { FaHouse, FaGear } from "react-icons/fa6";
-import Menu from "../components/Menu";
+import Menu from "../components/menu/Menu";
 import { useIsMobile } from "../hooks/useIsMobile";
 
 const Sidebar = () => {

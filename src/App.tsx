@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import Dashboard from "./features/dashboard/components/Dashboard";
-import CategoryPage from "./features/master/category/pages/CategoryPage";
-import SupplierPage from "./features/master/supplier/pages/SupplierPages";
+import CategoryPage from "./features/master/category/CategoryPage";
+import SupplierPage from "./features/master/supplier/SupplierPage";
 
 const router = createBrowserRouter([
   {

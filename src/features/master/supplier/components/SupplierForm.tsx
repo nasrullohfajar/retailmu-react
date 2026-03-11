@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCreateSupplier, useUpdateSupplier } from "../hooks/useSupplier";
+import { useCreateSupplier, useUpdateSupplier } from "../supplier.hook";
 import { InputText } from "../../../../components/input";
 import ModalForm from "../../../../components/modal/ModalForm";
 

@@ -1,15 +1,15 @@
-import type { ICategory } from "../types/category";
+import type { ICategory } from "./types";
 import { useState } from "react";
-import Table from "../../../../components/table/Table";
+import Table from "../../../components/table/Table";
 import {
   useGetCategories,
   useDeleteCategory,
   useGetCategoryById,
-} from "../hooks/useCategory";
-import InputSearch from "../../../../components/input/InputSearch";
-import { useTableParams } from "../../../../hooks/useTableParams";
-import { confirmDeleteAlert } from "../../../../utils/sweetalert";
-import CategoryForm from "../components/CategoryForm";
+} from "./category.hook";
+import InputSearch from "../../../components/input/InputSearch";
+import { useTableParams } from "../../../hooks/useTableParams";
+import { confirmDeleteAlert } from "../../../utils/sweetalert";
+import CategoryForm from "./components/CategoryForm";
 
 const CategoryPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

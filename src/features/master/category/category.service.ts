@@ -2,8 +2,8 @@ import type {
   ICategoryInput,
   ICategoryResponseAll,
   ICategoryResponseDetail,
-} from "../types/category";
-import axiosInstance from "../../../../api/axiosInstance";
+} from "./types";
+import axiosInstance from "../../../api/axiosInstance";
 
 export const categoryService = {
   create: async (payload: ICategoryInput): Promise<ICategoryResponseDetail> => {

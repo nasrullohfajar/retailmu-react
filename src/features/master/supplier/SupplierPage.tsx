@@ -1,15 +1,15 @@
-import type { ISupplier } from "../types/supplier";
+import type { ISupplier } from "./types";
 import { useState } from "react";
-import Table from "../../../../components/table/Table";
+import Table from "../../../components/table/Table";
 import {
   useGetSuppliers,
   useGetSupplierById,
   useDeleteSupplier,
-} from "../hooks/useSupplier";
-import InputSearch from "../../../../components/input/InputSearch";
-import { useTableParams } from "../../../../hooks/useTableParams";
-import { confirmDeleteAlert } from "../../../../utils/sweetalert";
-import SupplierForm from "../components/SupplierForm";
+} from "./supplier.hook";
+import InputSearch from "../../../components/input/InputSearch";
+import { useTableParams } from "../../../hooks/useTableParams";
+import { confirmDeleteAlert } from "../../../utils/sweetalert";
+import SupplierForm from "./components/SupplierForm";
 
 const SupplierPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -32,9 +32,9 @@ const SupplierPage = () => {
   const columns = [
     { title: "Kode Supplier", data: "code", sort: true },
     { title: "Nama Supplier", data: "name", sort: true },
-    { title: "PIC Supplier", data: "name", sort: true },
-    { title: "Telepon Supplier", data: "phone", sort: true },
-    { title: "Alamat Supplier", data: "address", sort: true },
+    { title: "PIC", data: "name", sort: false },
+    { title: "Telepon", data: "phone", sort: false },
+    { title: "Alamat", data: "address", sort: false },
   ];
 
   const handleAdd = () => {
