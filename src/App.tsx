@@ -6,6 +6,7 @@ import {
 import MainLayout from "./layout/MainLayout";
 import Dashboard from "./features/dashboard/components/Dashboard";
 import CategoryPage from "./features/master/category/pages/CategoryPage";
+import SupplierPage from "./features/master/supplier/pages/SupplierPages";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "category",
         element: <CategoryPage />,
+      },
+      {
+        path: "supplier",
+        element: <SupplierPage />,
       },
     ],
   },

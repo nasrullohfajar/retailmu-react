@@ -22,6 +22,10 @@ const Sidebar = () => {
           path: "/category",
           name: "Kategori",
         },
+        {
+          path: "/supplier",
+          name: "Supplier",
+        },
       ],
     },
   ];
