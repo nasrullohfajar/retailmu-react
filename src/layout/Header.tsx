@@ -18,8 +18,6 @@ const Header = () => {
     };
   });
 
-  console.log(breadcrumbItems);
-
   return (
     <header className="flex items-center px-3 xl:px-6 py-4 lg:py-6 bg-white rounded-sm shadow-xs">
       <Breadcrumb items={breadcrumbItems} />
