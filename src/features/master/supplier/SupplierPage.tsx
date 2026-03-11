@@ -32,7 +32,7 @@ const SupplierPage = () => {
   const columns = [
     { title: "Kode Supplier", data: "code", sort: true },
     { title: "Nama Supplier", data: "name", sort: true },
-    { title: "PIC", data: "name", sort: false },
+    { title: "PIC", data: "pic", sort: false },
     { title: "Telepon", data: "phone", sort: false },
     { title: "Alamat", data: "address", sort: false },
   ];
