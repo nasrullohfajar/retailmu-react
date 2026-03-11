@@ -1,14 +1,29 @@
-import { FaHouse } from "react-icons/fa6";
+import { useLocation } from "react-router-dom";
+import Breadcrumb from "./Breadcrumb";
+import { routeMap } from "../constants/routeConfig";
 
 const Header = () => {
-  return (
-    <div className="flex items-center px-3 xl:px-6 py-4 lg:py-6 bg-white rounded-sm shadow-xs">
-      <span>
-        <FaHouse size={16} className="mb-0.5" />
-      </span>
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
 
-      <span className="text-sm xl:text-base ml-1 md:ml-2">Dashboard</span>
-    </div>
+  const breadcrumbItems = pathnames.map((_, index) => {
+    const url = `/${pathnames.slice(0, index + 1).join("/")}`;
+    const label =
+      routeMap[url] ||
+      pathnames[index].charAt(0).toUpperCase() + pathnames[index].slice(1);
+
+    return {
+      label: label,
+      path: url,
+    };
+  });
+
+  console.log(breadcrumbItems);
+
+  return (
+    <header className="flex items-center px-3 xl:px-6 py-4 lg:py-6 bg-white rounded-sm shadow-xs">
+      <Breadcrumb items={breadcrumbItems} />
+    </header>
   );
 };
 
