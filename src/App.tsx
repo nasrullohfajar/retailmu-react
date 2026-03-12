@@ -7,6 +7,7 @@ import MainLayout from "./layout/MainLayout";
 import Dashboard from "./features/dashboard/components/Dashboard";
 import CategoryPage from "./features/master/category/CategoryPage";
 import SupplierPage from "./features/master/supplier/SupplierPage";
+import StoragePage from "./features/master/storage/StoragePage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "supplier",
         element: <SupplierPage />,
+      },
+      {
+        path: "storage",
+        element: <StoragePage />,
       },
     ],
   },
