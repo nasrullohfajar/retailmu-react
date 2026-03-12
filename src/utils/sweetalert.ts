@@ -16,3 +16,19 @@ export const confirmDeleteAlert = (title: string, onConfirm: () => void) => {
     }
   });
 };
+
+export const successAlert = (text: string) => {
+  Swal.fire({
+    icon: "success",
+    text: text,
+    timer: 2000,
+    showConfirmButton: false,
+    toast: true,
+    position: "top-right",
+    width: "auto",
+    customClass: {
+      htmlContainer: "text-xs lg:text-sm whitespace-nowrap px-4",
+      popup: "flex items-center",
+    },
+  });
+};
