@@ -2,6 +2,7 @@ import type { ISupplierInput } from "./types";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { supplierService } from "./supplier.service";
+import { successAlert } from "../../../utils/sweetalert";
 
 export const useGetSuppliers = (
   page: number,
@@ -44,19 +45,7 @@ export const useCreateSupplier = () => {
         exact: false,
       });
 
-      Swal.fire({
-        icon: "success",
-        text: response.message,
-        timer: 2000,
-        showConfirmButton: false,
-        toast: true,
-        position: "top-right",
-        width: "auto",
-        customClass: {
-          htmlContainer: "text-xs lg:text-sm whitespace-nowrap px-4",
-          popup: "flex items-center",
-        },
-      });
+      successAlert(response.message);
     },
 
     onError: (error: string) => {
@@ -87,14 +76,7 @@ export const useUpdateSupplier = () => {
         queryKey: ["suppliers", response.data._id],
       });
 
-      Swal.fire({
-        icon: "success",
-        text: response.message,
-        timer: 2000,
-        showConfirmButton: false,
-        toast: true,
-        position: "top-right",
-      });
+      successAlert(response.message);
     },
 
     onError: (error: string) => {
@@ -115,15 +97,7 @@ export const useDeleteSupplier = () => {
 
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ["suppliers"] });
-
-      Swal.fire({
-        icon: "success",
-        text: response.message,
-        timer: 2000,
-        showConfirmButton: false,
-        toast: true,
-        position: "top-right",
-      });
+      successAlert(response.message);
     },
 
     onError: (error: string) => {

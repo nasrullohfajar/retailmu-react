@@ -2,6 +2,7 @@ import type { ICategoryInput } from "./types";
 import Swal from "sweetalert2";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { categoryService } from "./category.service";
+import { successAlert } from "../../../utils/sweetalert";
 
 export const useGetCategories = (
   page: number,
@@ -42,19 +43,7 @@ export const useCreateCategory = () => {
         exact: false,
       }); // refresh query
 
-      Swal.fire({
-        icon: "success",
-        text: response.message,
-        timer: 2000,
-        showConfirmButton: false,
-        toast: true,
-        position: "top-right",
-        width: "auto",
-        customClass: {
-          htmlContainer: "text-xs lg:text-sm whitespace-nowrap px-4",
-          popup: "flex items-center",
-        },
-      });
+      successAlert(response.message);
     },
 
     onError: (error: string) => {
@@ -85,14 +74,7 @@ export const useUpdateCategory = () => {
         queryKey: ["categories", response.data._id],
       });
 
-      Swal.fire({
-        icon: "success",
-        text: response.message,
-        timer: 2000,
-        showConfirmButton: false,
-        toast: true,
-        position: "top-right",
-      });
+      successAlert(response.message);
     },
 
     onError: (error: string) => {
@@ -113,15 +95,7 @@ export const useDeleteCategory = () => {
 
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });
-
-      Swal.fire({
-        icon: "success",
-        text: response.message,
-        timer: 2000,
-        showConfirmButton: false,
-        toast: true,
-        position: "top-right",
-      });
+      successAlert(response.message);
     },
 
     onError: (error: string) => {
