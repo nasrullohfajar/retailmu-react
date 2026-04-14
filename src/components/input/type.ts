@@ -11,7 +11,9 @@ export interface InputTextProps {
   label?: string;
   placeholder?: string;
   value: string | number | string[];
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
   icon?: React.ReactNode;
   secret?: boolean;
   required?: boolean;

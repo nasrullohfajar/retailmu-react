@@ -9,9 +9,9 @@ const Modal = ({ title, children, setIsOpen }: ModalProps) => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="w-sm lg:w-lg xl:w-xl bg-white p-8 rounded-xl border border-gray-200"
+        className="bg-white p-8 rounded-xl"
       >
-        <div className="flex justify-between mb-8">
+        <div className="flex justify-between mb-4 xl:mb-8 px-2">
           <p className="text-base lg:text-lg font-medium">{title}</p>
           <button
             type="button"

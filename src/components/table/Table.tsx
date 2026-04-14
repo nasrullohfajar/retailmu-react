@@ -7,6 +7,7 @@ import TableSkeleton from "./TableSkeleton";
 import Modal from "../modal/Modal";
 
 const Table = <T extends Record<string, unknown>>({
+  id,
   isOpen,
   setIsOpen,
   data,
@@ -91,7 +92,7 @@ const Table = <T extends Record<string, unknown>>({
       </div>
 
       {isOpen && setIsOpen && (
-        <Modal title={"Tambah"} setIsOpen={setIsOpen}>
+        <Modal title={id ? "Edit" : "Tambah"} setIsOpen={setIsOpen}>
           {modal}
         </Modal>
       )}

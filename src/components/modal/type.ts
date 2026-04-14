@@ -11,4 +11,5 @@ export interface ModalFormProps {
   isLoading?: boolean;
   className?: string;
   handleCloseModal?: () => void;
+  size?: "sm" | "lg";
 }

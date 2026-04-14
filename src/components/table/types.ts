@@ -42,6 +42,7 @@ export interface TableDataProps<T> {
 }
 
 export interface TableProps<T> {
+  id?: string | null;
   isOpen?: boolean;
   setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   data?: TableDataProps<T>;

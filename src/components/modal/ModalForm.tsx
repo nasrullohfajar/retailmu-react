@@ -7,11 +7,18 @@ const ModalForm = ({
   isLoading,
   className,
   handleCloseModal,
+  size = "sm",
 }: ModalFormProps) => {
+  const modalFormSize = {
+    sm: "max-h-56 lg:max-h-72 xl:max-h-96 2xl:max-h-120 w-sm lg:w-md xl:w-lg 2xl:w-xl",
+    lg: "max-h-56 lg:max-h-84 xl:max-h-110 2xl:max-h-160 w-sm lg:w-md xl:w-lg 2xl:w-xl",
+  };
+  const selectedSize = modalFormSize[size] || modalFormSize.sm;
+
   return (
     <form
       onSubmit={onSubmit}
-      className={`flex flex-col gap-8 overflow-y-auto max-h-96 ${className}`}
+      className={`flex flex-col gap-4 xl:gap-8 overflow-y-auto p-2 ${selectedSize} ${className}`}
     >
       {children}
 

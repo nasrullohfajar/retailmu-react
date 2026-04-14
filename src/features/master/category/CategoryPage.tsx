@@ -36,6 +36,7 @@ const CategoryPage = () => {
   ];
 
   const handleAdd = () => {
+    setId(null);
     setIsOpen(true);
   };
 
@@ -46,6 +47,7 @@ const CategoryPage = () => {
 
   return (
     <Table<ICategory>
+      id={id}
       data={data}
       isLoading={isLoading}
       columns={columns}
