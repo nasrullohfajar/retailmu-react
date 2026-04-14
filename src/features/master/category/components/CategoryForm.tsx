@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCreateCategory, useUpdateCategory } from "../category.hook";
-import { InputText } from "../../../../components/input";
+import { InputText, InputTextArea } from "../../../../components/input";
 import ModalForm from "../../../../components/modal/ModalForm";
 
 interface CategoryFormProps {
@@ -25,7 +25,9 @@ const CategoryForm = ({
   const { mutate: createCategory, isPending: isCreating } = useCreateCategory();
   const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -50,14 +52,15 @@ const CategoryForm = ({
       isLoading={isCreating || isUpdating || isLoadingDetail}
       onSubmit={handleSubmit}
       setIsOpen={setIsOpen}
+      handleCloseModal={() => setIsOpen(false)}
     >
       <InputText
         label="Kode Kategori"
         name="code"
         value={formData.code}
         onChange={handleChange}
-        placeholder="Masukkan kode kategori"
-        disabled={!!id}
+        placeholder="Contoh: MKN"
+        required
       />
 
       <InputText
@@ -65,15 +68,16 @@ const CategoryForm = ({
         name="name"
         value={formData.name}
         onChange={handleChange}
-        placeholder="Masukkan nama kategori"
+        placeholder="Contoh: Makanan"
+        required
       />
 
-      <InputText
+      <InputTextArea
         label="Deskripsi"
         name="description"
         value={formData.description}
         onChange={handleChange}
-        placeholder="Masukkan deskripsi"
+        labelClassName="resize-none"
       />
     </ModalForm>
   );
