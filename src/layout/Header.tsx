@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import Breadcrumb from "./Breadcrumb";
-import { routeMap } from "../constants/routeConfig";
+import { getMenuNameByPath } from "../utils/menuHelper";
+import { menuList } from "../constants/menuList";
 
 const Header = () => {
   const location = useLocation();
@@ -8,8 +9,11 @@ const Header = () => {
 
   const breadcrumbItems = pathnames.map((_, index) => {
     const url = `/${pathnames.slice(0, index + 1).join("/")}`;
+
+    const labelFromMenu = getMenuNameByPath(url, menuList);
+
     const label =
-      routeMap[url] ||
+      labelFromMenu ||
       pathnames[index].charAt(0).toUpperCase() + pathnames[index].slice(1);
 
     return {
