@@ -55,8 +55,7 @@ const StorageForm = ({
         name="code"
         value={formData.code}
         onChange={handleChange}
-        placeholder="Masukkan kode penyimpanan"
-        disabled={!!id}
+        placeholder="Contoh: A1"
       />
 
       <InputText
@@ -64,7 +63,7 @@ const StorageForm = ({
         name="description"
         value={formData.description}
         onChange={handleChange}
-        placeholder="Masukkan deskripsi"
+        placeholder="Contoh: Rak makanan dan minuman"
       />
     </ModalForm>
   );

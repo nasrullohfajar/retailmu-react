@@ -35,6 +35,7 @@ const StoragePage = () => {
   ];
 
   const handleAdd = () => {
+    setId(null);
     setIsOpen(true);
   };
 
@@ -45,6 +46,7 @@ const StoragePage = () => {
 
   return (
     <Table<IStorage>
+      id={id}
       data={data}
       isLoading={isLoading}
       columns={columns}
