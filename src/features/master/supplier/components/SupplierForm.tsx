@@ -58,6 +58,7 @@ const SupplierForm = ({
       isLoading={isCreating || isUpdating || isLoadingDetail}
       onSubmit={handleSubmit}
       setIsOpen={setIsOpen}
+      handleCloseModal={() => setIsOpen(false)}
       size="lg"
     >
       <InputText

@@ -49,6 +49,7 @@ const StorageForm = ({
       isLoading={isCreating || isUpdating || isLoadingDetail}
       onSubmit={handleSubmit}
       setIsOpen={setIsOpen}
+      handleCloseModal={() => setIsOpen(false)}
     >
       <InputText
         label="Kode Penyimpanan"
