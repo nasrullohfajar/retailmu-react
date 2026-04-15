@@ -38,6 +38,7 @@ const SupplierPage = () => {
   ];
 
   const handleAdd = () => {
+    setId(null);
     setIsOpen(true);
   };
 
@@ -48,6 +49,7 @@ const SupplierPage = () => {
 
   return (
     <Table<ISupplier>
+      id={id}
       data={data}
       isLoading={isLoading}
       columns={columns}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCreateSupplier, useUpdateSupplier } from "../supplier.hook";
-import { InputText } from "../../../../components/input";
+import { InputText, InputTextArea } from "../../../../components/input";
 import ModalForm from "../../../../components/modal/ModalForm";
 
 interface SupplierFormProps {
@@ -58,14 +58,14 @@ const SupplierForm = ({
       isLoading={isCreating || isUpdating || isLoadingDetail}
       onSubmit={handleSubmit}
       setIsOpen={setIsOpen}
+      size="lg"
     >
       <InputText
         label="Kode Supplier"
         name="code"
         value={formData.code}
         onChange={handleChange}
-        placeholder="Masukkan kode supplier"
-        disabled={!!id}
+        placeholder="Contoh: TS"
       />
 
       <InputText
@@ -73,7 +73,7 @@ const SupplierForm = ({
         name="name"
         value={formData.name}
         onChange={handleChange}
-        placeholder="Masukkan nama supplier"
+        placeholder="Contoh: Toko Sejahtera"
       />
 
       <InputText
@@ -81,7 +81,6 @@ const SupplierForm = ({
         name="pic"
         value={formData.pic}
         onChange={handleChange}
-        placeholder="Masukkan PIC supplier"
       />
 
       <InputText
@@ -89,15 +88,15 @@ const SupplierForm = ({
         name="phone"
         value={formData.phone}
         onChange={handleChange}
-        placeholder="Masukkan telepon supplier"
+        placeholder="Contoh: 08xx"
       />
 
-      <InputText
+      <InputTextArea
         label="Alamat Supplier"
         name="address"
         value={formData.address}
         onChange={handleChange}
-        placeholder="Masukkan alamat supplier"
+        labelClassName="resize-none"
       />
     </ModalForm>
   );

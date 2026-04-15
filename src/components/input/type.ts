@@ -5,15 +5,13 @@ export interface InputSearchProps {
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export interface InputTextProps {
+export interface InputTextProps<T = HTMLInputElement> {
   type?: string;
   name: string;
   label?: string;
   placeholder?: string;
   value: string | number | string[];
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
+  onChange: (e: React.ChangeEvent<T>) => void;
   icon?: React.ReactNode;
   secret?: boolean;
   required?: boolean;
