@@ -4,6 +4,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
+import LoginPage from "./features/auth/LoginPage";
 import Dashboard from "./features/dashboard/components/Dashboard";
 import CategoryPage from "./features/master/category/CategoryPage";
 import SupplierPage from "./features/master/supplier/SupplierPage";
@@ -16,8 +17,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/dashboard" replace />,
+        element: <Navigate to="/login" replace />,
       },
+
       {
         path: "dashboard",
         element: <Dashboard />,
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
         element: <StoragePage />,
       },
     ],
+  },
+  {
+    path: "login",
+    element: <LoginPage />,
   },
   {
     path: "*",
