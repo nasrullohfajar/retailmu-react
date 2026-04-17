@@ -13,7 +13,7 @@ const Breadcrumb = ({ items, button }: BreadcrumbProps) => {
 
           <Link
             to={"/"}
-            className="text-(--primary-color) font-medium text-sm xl:text-base"
+            className="text-(--primary-color) font-medium text-xs lg:text-sm"
           >
             Dashboard
           </Link>
@@ -31,12 +31,12 @@ const Breadcrumb = ({ items, button }: BreadcrumbProps) => {
                 {item.path && !isLast ? (
                   <Link
                     to={item.path}
-                    className="text-(--primary-color) font-medium text-sm xl:text-base"
+                    className="text-(--primary-color) font-medium text-xs lg:text-sm"
                   >
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-gray-500 font-medium text-sm xl:text-base">
+                  <span className="text-gray-500 font-medium text-xs lg:text-sm">
                     {item.label}
                   </span>
                 )}
