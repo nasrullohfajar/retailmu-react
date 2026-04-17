@@ -13,9 +13,9 @@ export const useLogin = () => {
     mutationFn: (payload: IAuth) => authService.login(payload),
 
     onSuccess: (response) => {
-      queryClient.setQueryData(["auth"], response.data);
-      successAlert(response.message);
+      queryClient.setQueryData(["auth"], response);
       navigate("/dashboard");
+      successAlert(response.message);
     },
 
     onError: (error: string) => {
