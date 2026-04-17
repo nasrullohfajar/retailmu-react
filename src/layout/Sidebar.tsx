@@ -1,4 +1,4 @@
-import logo from "../assets/logo-full.svg";
+import logo from "../assets/logo-full-p.svg";
 import logoInitial from "../assets/logo-initial.svg";
 import Menu from "../components/menu/Menu";
 import { useIsMobile } from "../hooks/useIsMobile";
