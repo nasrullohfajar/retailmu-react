@@ -9,39 +9,35 @@ import Dashboard from "./features/dashboard/components/Dashboard";
 import CategoryPage from "./features/master/category/CategoryPage";
 import SupplierPage from "./features/master/supplier/SupplierPage";
 import StoragePage from "./features/master/storage/StoragePage";
+import ProtectedRoute from "./features/routes/ProtectedRoute";
+import GuestRoute from "./features/routes/GuestRoute";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <MainLayout />,
+    element: <ProtectedRoute />,
     children: [
       {
-        index: true,
-        element: <Navigate to="/login" replace />,
-      },
-
-      {
-        path: "dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "category",
-        element: <CategoryPage />,
-      },
-      {
-        path: "supplier",
-        element: <SupplierPage />,
-      },
-      {
-        path: "storage",
-        element: <StoragePage />,
+        path: "/",
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="/dashboard" replace />,
+          },
+          { path: "dashboard", element: <Dashboard /> },
+          { path: "category", element: <CategoryPage /> },
+          { path: "supplier", element: <SupplierPage /> },
+          { path: "storage", element: <StoragePage /> },
+        ],
       },
     ],
   },
+
   {
-    path: "login",
-    element: <LoginPage />,
+    element: <GuestRoute />,
+    children: [{ path: "login", element: <LoginPage /> }],
   },
+
   {
     path: "*",
     element: (
