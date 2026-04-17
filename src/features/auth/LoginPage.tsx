@@ -1,20 +1,8 @@
-import { useState } from "react";
 import retail from "../../assets/retail.png";
 import logoFull from "../../assets/logo-full.svg";
-import { InputText } from "../../components/input";
-import Button from "../../components/button/Button";
+import AuthForm from "./components/AuthForm";
 
 const LoginPage = () => {
-  const [loginForm, setLoginForm] = useState({ username: "", password: "" });
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setLoginForm((prev) => ({ ...prev, [name]: value }));
-  };
-
   return (
     <div className="relative h-dvh overflow-hidden bg-(--primary-color)">
       <img
@@ -37,33 +25,7 @@ const LoginPage = () => {
           </div>
 
           <div>
-            <form className="space-y-18">
-              <div className="space-y-4">
-                <InputText
-                  name="username"
-                  placeholder="Username"
-                  value={loginForm.username}
-                  onChange={handleChange}
-                  formClassname="bg-(--secondary-color) text-[#778288] border-[#282C2E]! border-2"
-                />
-
-                <InputText
-                  name="password"
-                  placeholder="Password"
-                  value={loginForm.password}
-                  onChange={handleChange}
-                  secret
-                  formClassname="bg-(--secondary-color) text-[#778288] border-[#282C2E]! border-2"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                name="Login"
-                className="w-full h-12 bg-[#f29c3d] hover:bg-[#d68937] font-medium"
-                isLoading={isLoading}
-              />
-            </form>
+            <AuthForm />
           </div>
         </div>
       </div>
