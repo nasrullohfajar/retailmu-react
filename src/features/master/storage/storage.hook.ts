@@ -1,8 +1,7 @@
 import type { IStorageInput } from "./types";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import Swal from "sweetalert2";
 import { storageService } from "./storage.service";
-import { successAlert } from "../../../utils/sweetalert";
+import { successAlert, errorAlert } from "../../../utils/sweetalert";
 
 export const useGetStorages = (
   page: number,
@@ -49,11 +48,7 @@ export const useCreateStorage = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };
@@ -80,11 +75,7 @@ export const useUpdateStorage = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };
@@ -101,11 +92,7 @@ export const useDeleteStorage = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };

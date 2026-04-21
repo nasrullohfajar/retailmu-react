@@ -10,6 +10,7 @@ import InputSearch from "../../../components/input/InputSearch";
 import { useTableParams } from "../../../hooks/useTableParams";
 import { confirmDeleteAlert } from "../../../utils/sweetalert";
 import StorageForm from "./components/StorageForm";
+import PageLoader from "../../../components/loader/PageLoader";
 
 const StoragePage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -71,7 +72,7 @@ const StoragePage = () => {
         isOpen && (
           <>
             {id && isLoadingDetail ? (
-              <div>Loading...</div>
+              <PageLoader />
             ) : (
               <StorageForm
                 key={id ?? "new"}

@@ -57,6 +57,7 @@ const StorageForm = ({
         value={formData.code}
         onChange={handleChange}
         placeholder="Contoh: A1"
+        required
       />
 
       <InputText
