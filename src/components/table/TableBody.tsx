@@ -12,6 +12,18 @@ const TableBody = <T extends Record<string, unknown>>({
   onDetail,
   onDelete,
 }: TableBodyProps<T>) => {
+  const getNestedValue = (
+    obj: Record<string, unknown>,
+    path: string,
+  ): unknown => {
+    return path.split(".").reduce((acc, key) => {
+      if (acc && typeof acc === "object") {
+        return (acc as Record<string, unknown>)[key];
+      }
+      return undefined;
+    }, obj as unknown);
+  };
+
   return (
     <tbody>
       {data.map((item, idx) => {
@@ -27,9 +39,10 @@ const TableBody = <T extends Record<string, unknown>>({
             </td>
 
             {columns.map((col) => {
-              const value = (item as Record<string, unknown>)[
-                col.data as string
-              ];
+              const value = getNestedValue(
+                item as Record<string, unknown>,
+                col.data as string,
+              );
 
               return (
                 <td
