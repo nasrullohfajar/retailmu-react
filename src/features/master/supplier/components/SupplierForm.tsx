@@ -1,3 +1,4 @@
+import type { ISupplier } from "../types";
 import { useState } from "react";
 import { useCreateSupplier, useUpdateSupplier } from "../supplier.hook";
 import { InputText, InputTextArea } from "../../../../components/input";
@@ -6,13 +7,7 @@ import ModalForm from "../../../../components/modal/ModalForm";
 interface SupplierFormProps {
   setIsOpen: (open: boolean) => void;
   id?: string | null;
-  initialData?: {
-    code: string;
-    name: string;
-    pic: string;
-    phone: string;
-    address: string;
-  };
+  initialData?: ISupplier;
   isLoadingDetail?: boolean;
 }
 
@@ -67,6 +62,7 @@ const SupplierForm = ({
         value={formData.code}
         onChange={handleChange}
         placeholder="Contoh: TS"
+        required
       />
 
       <InputText
@@ -75,6 +71,7 @@ const SupplierForm = ({
         value={formData.name}
         onChange={handleChange}
         placeholder="Contoh: Toko Sejahtera"
+        required
       />
 
       <InputText
@@ -82,14 +79,17 @@ const SupplierForm = ({
         name="pic"
         value={formData.pic}
         onChange={handleChange}
+        required
       />
 
       <InputText
+        type="number"
         label="Telepon Supplier"
         name="phone"
         value={formData.phone}
         onChange={handleChange}
         placeholder="Contoh: 08xx"
+        required
       />
 
       <InputTextArea
@@ -98,6 +98,7 @@ const SupplierForm = ({
         value={formData.address}
         onChange={handleChange}
         labelClassName="resize-none"
+        required
       />
     </ModalForm>
   );
