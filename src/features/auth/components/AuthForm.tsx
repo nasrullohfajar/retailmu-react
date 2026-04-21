@@ -2,6 +2,7 @@ import { useState } from "react";
 import { InputText } from "../../../components/input";
 import Button from "../../../components/button/Button";
 import { useLogin } from "../auth.hook";
+import { FaInfoCircle } from "react-icons/fa";
 
 const AuthForm = () => {
   const [loginForm, setLoginForm] = useState({ username: "", password: "" });
@@ -18,7 +19,11 @@ const AuthForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    login(loginForm);
+    login(loginForm, {
+      onError: () => {
+        setLoginForm((prev) => ({ ...prev, password: "" }));
+      },
+    });
   };
 
   return (
@@ -40,12 +45,22 @@ const AuthForm = () => {
           secret
           formClassname="bg-(--secondary-color) text-[#778288] border-[#282C2E]! border-2"
         />
+
+        <div className="flex justify-end">
+          <a
+            href="https://github.com/nasrullohfajar/retailmu-react.git"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInfoCircle color="white" />
+          </a>
+        </div>
       </div>
 
       <Button
         type="submit"
         name="Login"
-        className="w-full h-12 bg-[#f29c3d] hover:bg-[#d68937] font-medium"
+        className="w-full h-12 bg-blue-400 hover:bg-blue-500 font-medium"
         isLoading={isPending}
       />
     </form>
