@@ -9,6 +9,8 @@ import Dashboard from "./features/dashboard/components/Dashboard";
 import CategoryPage from "./features/master/category/CategoryPage";
 import SupplierPage from "./features/master/supplier/SupplierPage";
 import StoragePage from "./features/master/storage/StoragePage";
+import ProductPage from "./features/master/product/ProductPage";
+
 import ProtectedRoute from "./features/routes/ProtectedRoute";
 import GuestRoute from "./features/routes/GuestRoute";
 
@@ -28,6 +30,7 @@ const router = createBrowserRouter([
           { path: "category", element: <CategoryPage /> },
           { path: "supplier", element: <SupplierPage /> },
           { path: "storage", element: <StoragePage /> },
+          { path: "product", element: <ProductPage /> },
         ],
       },
     ],

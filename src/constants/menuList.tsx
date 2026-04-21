@@ -16,6 +16,10 @@ export const menuList = [
         name: "Kategori",
       },
       {
+        path: "/product",
+        name: "Produk",
+      },
+      {
         path: "/supplier",
         name: "Supplier",
       },
