@@ -1,9 +1,8 @@
 import type { IAuth } from "./types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { authService } from "./auth.service";
-import { successAlert } from "../../utils/sweetalert";
+import { successAlert, errorAlert } from "../../utils/sweetalert";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -19,11 +18,7 @@ export const useLogin = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Login gagal",
-        text: error,
-      });
+      errorAlert("Login gagal", error);
     },
   });
 };
@@ -41,11 +36,7 @@ export const useLogout = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Logout gagal",
-        text: error,
-      });
+      errorAlert("Logout gagal", error);
     },
   });
 };

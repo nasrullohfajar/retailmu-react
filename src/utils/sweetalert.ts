@@ -32,3 +32,12 @@ export const successAlert = (text: string) => {
     },
   });
 };
+
+export const errorAlert = (title: string, text: string) => {
+  Swal.fire({
+    icon: "error",
+    title: title,
+    text: text,
+    confirmButtonColor: "#60a5fa",
+  });
+};
