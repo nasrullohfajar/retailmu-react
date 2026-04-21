@@ -22,7 +22,7 @@ const AuthForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-18">
+    <form onSubmit={handleSubmit} className="space-y-12 2xl:space-y-18">
       <div className="space-y-4">
         <InputText
           name="username"
