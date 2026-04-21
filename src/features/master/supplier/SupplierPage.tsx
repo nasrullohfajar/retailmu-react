@@ -10,6 +10,7 @@ import InputSearch from "../../../components/input/InputSearch";
 import { useTableParams } from "../../../hooks/useTableParams";
 import { confirmDeleteAlert } from "../../../utils/sweetalert";
 import SupplierForm from "./components/SupplierForm";
+import PageLoader from "../../../components/loader/PageLoader";
 
 const SupplierPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -74,7 +75,7 @@ const SupplierPage = () => {
         isOpen && (
           <>
             {id && isLoadingDetail ? (
-              <div>Loading...</div>
+              <PageLoader />
             ) : (
               <SupplierForm
                 key={id ?? "new"}
