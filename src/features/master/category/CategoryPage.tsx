@@ -10,6 +10,7 @@ import InputSearch from "../../../components/input/InputSearch";
 import { useTableParams } from "../../../hooks/useTableParams";
 import { confirmDeleteAlert } from "../../../utils/sweetalert";
 import CategoryForm from "./components/CategoryForm";
+import PageLoader from "../../../components/loader/PageLoader";
 
 const CategoryPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -72,7 +73,7 @@ const CategoryPage = () => {
         isOpen && (
           <>
             {id && isLoadingDetail ? (
-              <div>Loading...</div>
+              <PageLoader />
             ) : (
               <CategoryForm
                 key={id ?? "new"}
