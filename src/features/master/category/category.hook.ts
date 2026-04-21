@@ -1,8 +1,7 @@
 import type { ICategoryInput } from "./types";
-import Swal from "sweetalert2";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { categoryService } from "./category.service";
-import { successAlert } from "../../../utils/sweetalert";
+import { successAlert, errorAlert } from "../../../utils/sweetalert";
 
 export const useGetCategories = (
   page: number,
@@ -47,11 +46,7 @@ export const useCreateCategory = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };
@@ -78,11 +73,7 @@ export const useUpdateCategory = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };
@@ -99,11 +90,7 @@ export const useDeleteCategory = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };
