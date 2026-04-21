@@ -1,8 +1,7 @@
 import type { ISupplierInput } from "./types";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import Swal from "sweetalert2";
 import { supplierService } from "./supplier.service";
-import { successAlert } from "../../../utils/sweetalert";
+import { successAlert, errorAlert } from "../../../utils/sweetalert";
 
 export const useGetSuppliers = (
   page: number,
@@ -49,11 +48,7 @@ export const useCreateSupplier = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };
@@ -80,11 +75,7 @@ export const useUpdateSupplier = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };
@@ -101,11 +92,7 @@ export const useDeleteSupplier = () => {
     },
 
     onError: (error: string) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error,
-      });
+      errorAlert("Gagal", error);
     },
   });
 };
