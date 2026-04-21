@@ -24,3 +24,19 @@ export interface InputTextProps<T = HTMLInputElement> {
   decimal?: boolean;
   errorNoLabel?: boolean;
 }
+
+export interface InputSelectProps {
+  name: string;
+  label?: string;
+  value: any;
+  options: any;
+  onChange: any;
+  className?: string;
+  required?: boolean;
+  error?: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  placeholder?: string;
+  defaultValue?: string;
+  errorNoLabel?: boolean;
+}
